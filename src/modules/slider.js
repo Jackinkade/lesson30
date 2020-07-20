@@ -82,5 +82,6 @@ const slider = () => {
             newdot.appendChild(dot[i]);
         }
     };
+    createDots();
 };
 export default slider;
