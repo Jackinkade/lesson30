@@ -20,8 +20,7 @@ function countTimer(deadline) {
 		timeHours.textContent = timer.hours;
 		timeMinute.textContent = timer.minutes;
 		timeSeconds.textContent = timer.seconds;
-		//Изменить скрипт так, чтобы в таком случае выводилось: 00:00:00
-		// из 4:6:50 сделает 04:06:50
+
 		if (timer.hours < 10) {
 			timeHours.textContent = "0" + timer.hours;
 		}
@@ -32,14 +31,12 @@ function countTimer(deadline) {
 			timeSeconds.textContent = "0" + timer.seconds;
 		}
 		if (timer.hours < 0) {
-			timeHours.textContent = 0;
-			timeMinute.textContent = 0;
-			timeSeconds.textContent = 0;
+			timeHours.textContent = '00';
+			timeMinute.textContent = '00';
+			timeSeconds.textContent = '00';
 		}
-		if (timer.timeReamning > 0) {
-			setTimeout(updateClock, 1000);
-		}
+
 	};
-	updateClock();
+	setTimeout(updateClock(), 1000);
 }
 export default countTimer;

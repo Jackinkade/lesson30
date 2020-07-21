@@ -18,26 +18,7 @@ const calc = (price = 100) => {
 	const calcDay = document.querySelector('.calc-day');
 	const totalValue = document.querySelector('#total');
 
-	let intervlId;
-	const renderTotal = total => {
-		let startTotal = 0;
 
-		clearInterval(intervlId);
-
-		if (calcType.options[calcType.selectedIndex] === 0) {
-			clearInterval(intervlId);
-			startTotal = 0;
-		}
-
-		intervlId = setInterval(() => {
-			startTotal += total.toString().length;
-			totalValue.textContent = Math.ceil(startTotal);
-			if (startTotal >= total) {
-				totalValue.textContent = Math.ceil(total);
-				clearInterval(intervlId);
-			}
-		}, 2);
-	};
 
 	const countSum = () => {
 		let total = 0;
@@ -60,7 +41,7 @@ const calc = (price = 100) => {
 			total = price * typeValue * squareValue * countValue * dayValue;
 
 		}
-		renderTotal(Math.ceil(total));
+		totalValue.textContent = total;
 	};
 
 

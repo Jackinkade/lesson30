@@ -1,10 +1,13 @@
+/* eslint-disable linebreak-style */
+/* eslint-disable indent */
 const togglePopUp = () => {
+    // eslint-disable-next-line indent
     const popup = document.querySelector('.popup'),
         popupBtn = document.querySelectorAll('.popup-btn'),
         popupContent = document.querySelector('.popup-content');
 
     let count = 0,
-        count1 = 100;
+        count1 = 70;
 
     const openPopup = () => {
         const popupanimate = requestAnimationFrame(openPopup);

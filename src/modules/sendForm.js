@@ -51,6 +51,9 @@ const sendForm = () => {
 	}
 	maskPhone(`[name='user_phone']`);
 
+
+
+
 	allForms.forEach(form => {
 		form.addEventListener('input', evt => {
 			const target = evt.target;
@@ -111,6 +114,7 @@ const sendForm = () => {
 			form.appendChild(statusMessage);
 			statusMessage.textContent = loadMessage;
 
+
 			const formData = new FormData(form);
 			form.querySelectorAll('input').forEach(elem => {
 				elem.value = '';
@@ -120,13 +124,21 @@ const sendForm = () => {
 				body[key] = val;
 			});
 			const outputData = () => {
+
+
 				statusMessage.textContent = successMessage;
+				setTimeout(() => statusMessage.remove(), 3000);
 				form.reset();
 			};
 
 			const error = () => {
+
+
 				statusMessage.textContent = errorMessage;
+				setTimeout(() => statusMessage.remove(), 3000);
+
 				form.reject();
+
 			};
 			postData(body)
 				.then(response => {

@@ -1,3 +1,5 @@
+/* eslint-disable linebreak-style */
+/* eslint-disable indent */
 const changePhoto = () => {
     const commandPhoto = document.querySelectorAll('.command__photo');
     commandPhoto.forEach(item => {
