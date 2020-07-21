@@ -1,51 +1,47 @@
 /* eslint-disable linebreak-style */
 /* eslint-disable indent */
-const togglePopUp = () => {
-    // eslint-disable-next-line indent
-    const popup = document.querySelector('.popup'),
-        popupBtn = document.querySelectorAll('.popup-btn'),
-        popupContent = document.querySelector('.popup-content');
+const togglePopup = () => {
+  const popup = document.querySelector('.popup');
+  const popupContent = document.querySelector('.popup-content');
+  const popupBtn = document.querySelectorAll('.popup-btn');
 
-    let count = 0,
-        count1 = 70;
-
-    const openPopup = () => {
-        const popupanimate = requestAnimationFrame(openPopup);
-
-        count1 += 10;
-        popup.style.display = 'block';
-        if (popup.style.opacity < 5) {
-
-            popup.style.opacity = count += 0.155;
-            popupContent.style.left = count1 * 2 + 'px';
-        } else {
-            cancelAnimationFrame(popupanimate);
-        }
-    };
+  let count = -200;
 
 
-    popupBtn.forEach(elem => {
-        elem.addEventListener('click', () => {
-            if (window.innerWidth  >= 768) {
-                openPopup();
-            } else {
-                popup.style.display = '';
-            }
-        });
+  popup.addEventListener('click', event => {
+    let target = event.target;
+    count = -200;
+    if (target.classList.contains('popup-close')) {
+      popup.style.display = 'none';
+    } else {
+      target = target.closest('.popup-content');
+      if (!target) {
+        popup.style.display = 'none';
+      }
+    }
+  });
 
+   const openPopup = () => {
+      if (document.documentElement.clientWidth <= 768) {
+        popupContent.style.transform = `translate(0)`;
+          return;
+      }
 
+      const requestId = requestAnimationFrame(openPopup);
+      count += 5;
+      popupContent.style.transform = `translate(${count}%)`;
+      if (count >= 0) {
+          cancelAnimationFrame(requestId);
 
-    });
-    popup.addEventListener('click', event => {
-        let target  = event.target;
-        if (target.classList.contains('popup-close')) {
-            popup.style.display = 'none';
-        } else {
-            target = target.closest('.popup-content');
-            if (!target) {
-                popup.style.display = 'none';
-            }
-        }
-    });
+      }
+  };
+
+  popupBtn.forEach(elem => {
+      elem.addEventListener('click', () => {
+          popup.style.display = 'block';
+          openPopup();
+      });
+  });
 };
-export default togglePopUp;
+
+export default togglePopup;
